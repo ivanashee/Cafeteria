@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
-import { formatPrice, bagImage } from '@/lib/format';
+import { formatPrice } from '@/lib/format';
+import { productImage } from '@/lib/images';
 import AddToCartButton from './AddToCartButton';
 
 export default function ProductCard({ product }: { product: Product }) {
-  const img = product.image_url || bagImage(product.slug);
+  const img = product.image_url || productImage(product.slug, product.category_slug);
   const outOfStock = product.stock <= 0;
   return (
     <div className="cs-bag-slot group relative flex flex-col gap-3.5 p-3.5 border border-border rounded-xl bg-white transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_24px_48px_-16px_rgba(30,26,21,0.28)] hover:border-coffee/40 hover:bg-cream/60">

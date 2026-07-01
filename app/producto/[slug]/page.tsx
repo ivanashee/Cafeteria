@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import { getProductBySlug, getRelatedProducts } from '@/lib/data';
-import { formatPrice, bagImage } from '@/lib/format';
+import { formatPrice } from '@/lib/format';
+import { productImage } from '@/lib/images';
 import AddToCartButton from '@/components/AddToCartButton';
 
 export const revalidate = 60;
@@ -12,9 +13,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const product = await getProductBySlug(slug);
   if (!product) notFound();
   const related = await getRelatedProducts(product);
-  const img = product.image_url || bagImage(product.slug, 800);
+  const img = product.image_url || productImage(product.slug, product.category_slug, 800);
   const outOfStock = product.stock <= 0;
-  const gallery = product.gallery.length ? product.gallery : [img, bagImage(product.slug + '-1', 400), bagImage(product.slug + '-2', 400), bagImage(product.slug + '-3', 400)];
+  const gallery = product.gallery.length ? product.gallery : [
+    img,
+    productImage(product.slug, product.category_slug, 400),
+    productImage((product.category_slug ?? '') + '-alt', product.category_slug, 400),
+    productImage('fallback-' + product.id, product.category_slug, 400),
+  ];
 
   return (
     <div className="max-w-[1360px] mx-auto px-8 pt-10 pb-24 cs-fade">
