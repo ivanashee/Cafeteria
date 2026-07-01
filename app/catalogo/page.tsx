@@ -1,8 +1,17 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import Reveal from '@/components/Reveal';
+import SortSelect from '@/components/SortSelect';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
 import { CATALOG_HERO_IMAGE } from '@/lib/images';
+
+const SORT_OPTIONS = [
+  { value: 'recent', label: 'Más recientes' },
+  { value: 'price-asc', label: 'Precio: menor a mayor' },
+  { value: 'price-desc', label: 'Precio: mayor a menor' },
+  { value: 'name-asc', label: 'Nombre A–Z' },
+  { value: 'name-desc', label: 'Nombre Z–A' },
+];
 
 export const revalidate = 60;
 
@@ -72,31 +81,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
             <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-stone">Ordenar</span>
           </div>
           <span className="w-px bg-border" />
-          <div className="relative flex items-center">
-            <select
-              name="sort"
-              defaultValue={sort}
-              className="appearance-none bg-transparent h-11 pl-4 pr-9 font-display italic text-[15px] text-coffee outline-none cursor-pointer"
-            >
-              <option value="recent">Más recientes</option>
-              <option value="price-asc">Precio: menor a mayor</option>
-              <option value="price-desc">Precio: mayor a menor</option>
-              <option value="name-asc">Nombre A–Z</option>
-              <option value="name-desc">Nombre Z–A</option>
-            </select>
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              className="pointer-events-none absolute right-3 text-coffee/70"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </div>
+          <SortSelect name="sort" defaultValue={sort} options={SORT_OPTIONS} />
           <button
             aria-label="Aplicar orden"
             className="ml-1 my-1 mr-1 px-4 rounded-full bg-coffee text-cream text-[11px] font-mono tracking-[0.24em] uppercase inline-flex items-center gap-2 hover:bg-cocoa transition-all"
