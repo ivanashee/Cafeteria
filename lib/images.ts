@@ -34,24 +34,32 @@ export function categoryImage(slug: string, index = 0): string {
   return CATEGORY_IMAGE_BY_SLUG[slug] ?? CATEGORY_IMAGES[index % CATEGORY_IMAGES.length];
 }
 
-/** Map from product slug → specific Unsplash photo ID relevant to that item. */
+/**
+ * Map from product slug → image. Values can be:
+ *   - a local URL (starts with '/') for user-uploaded photos in /public/img/
+ *   - an Unsplash photo ID (bare number-hash) for the fallback CDN images
+ */
 const PER_SLUG: Record<string, string> = {
-  'blend-esperanza':   '1611854779393-1b2da9d400fe', // roasted coffee bag
-  'finca-monte-rosa':  '1447933601403-0c6688de566e', // artisan coffee bags
-  'descafeinado':      '1587049352846-4a222e784d38', // coffee bag on wood
-  'cold-brew-1l':      '1517701604599-bb29b565090c', // coffee bottle
-  'cold-brew-lata':    '1544787219-7f47ccb76574',    // canned drink coffee
-  'combo-degustacion': '1610889556528-9a770e32642f', // several coffee bags
-  'combo-oficina':     '1522992319-0365e5f11656',    // large coffee bag
-  'box-regalo-inicio': '1524350876685-274059332603', // coffee gift box
+  // Café
+  'blend-esperanza':   '/img/cafe en grano y molido 1.jpeg',
+  'finca-monte-rosa':  '/img/cafe grano y molio 2.jpeg',
+  'descafeinado':      '1587049352846-4a222e784d38', // coffee bag on wood (no local)
+  // Bebidas
+  'cold-brew-1l':      '/img/cold brew 1l.webp',
+  'cold-brew-lata':    '/img/cold brew 330 ml.jpg',
+  // Combos
+  'combo-degustacion': '1610889556528-9a770e32642f',
+  'combo-oficina':     '1522992319-0365e5f11656',
+  // Regalos
+  'box-regalo-inicio': '1524350876685-274059332603',
   // Menú del día
-  'lasana-de-pollo':   '1574894709920-11b28e7367e3', // baked pasta / lasagna
-  'vori-vori-de-pollo':'1607330289024-1535c6b4e1c1', // hearty soup
-  'chop-suey-de-carne':'1512621776951-a57141f2eefd', // beef stir-fry
+  'lasana-de-pollo':   '1574894709920-11b28e7367e3',
+  'vori-vori-de-pollo':'/img/vori vori.webp',
+  'chop-suey-de-carne':'/img/chop suey.jpg',
   // Desayuno
-  'cookies':           '1499636136210-6f4ee915583e', // cookies
-  'croissants':        '1568051243851-f9b136146e97', // croissant
-  'facturas':          '1550989460-0adf9ea622e2',    // pastries
+  'cookies':           '1499636136210-6f4ee915583e', // no local
+  'croissants':        '/img/croissants.jpg',
+  'facturas':          '/img/facturas.jpeg',
 };
 
 /** Category-slug fallback when we don't have a per-product mapping. */
@@ -72,21 +80,27 @@ const FALLBACK = [
   '1509042239860-f550ce710b93',
 ];
 
+/** True when the value is a local `/img/...` path rather than an Unsplash ID. */
+function isLocalUrl(value: string) {
+  return value.startsWith('/') || value.startsWith('http');
+}
+
 /**
- * Real Unsplash coffee image chosen by (slug, category) — most specific wins.
- * Keeps deterministic output so SSR/CSR match.
+ * Image chosen by (slug, category). Returns a local URL if we uploaded a photo
+ * for that product, otherwise falls back to an Unsplash CDN URL. Deterministic
+ * so SSR/CSR match.
  */
 export function productImage(slug: string, categorySlug?: string | null, size = 600): string {
-  const id =
+  const value =
     PER_SLUG[slug] ||
     (categorySlug ? PER_CATEGORY[categorySlug] : undefined) ||
     FALLBACK[[...slug].reduce((a, c) => a + c.charCodeAt(0), 0) % FALLBACK.length];
-  return unsplash(id, size);
+  if (isLocalUrl(value)) return encodeURI(value); // encode spaces in filenames
+  return unsplash(value, size);
 }
 
 /** Back-compat alias — kept because other files still import `bagImage`. */
 export function bagImage(seed: string | number, size = 600): string {
   if (typeof seed === 'string') return productImage(seed, undefined, size);
-  const id = FALLBACK[Math.abs(seed) % FALLBACK.length];
-  return unsplash(id, size);
+  return unsplash(FALLBACK[Math.abs(seed) % FALLBACK.length], size);
 }
