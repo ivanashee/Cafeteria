@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-coffeeDark text-cream/70 mt-24">
+    <footer className="bg-coffeeDark text-cream/70">
       <div className="max-w-[1360px] mx-auto px-8 pt-20 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 mb-16">
           <div>
@@ -38,7 +38,14 @@ export default function Footer() {
           <div>© {new Date().getFullYear()} Coffee Store · Hecho con espresso doble en Asunción</div>
           <div className="flex items-center gap-2">
             <span>Desarrollado por</span>
-            <span className="font-display italic text-gold text-sm tracking-wide">neura</span>
+            <a
+              href="https://neura.com.py"
+              target="_blank"
+              rel="noreferrer"
+              className="font-display italic text-gold text-sm tracking-wide transition-colors hover:text-cream"
+            >
+              Neura
+            </a>
           </div>
         </div>
       </div>
