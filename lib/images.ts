@@ -22,8 +22,8 @@ export const CATEGORY_IMAGE_BY_SLUG: Record<string, string> = {
   cafe:       unsplash('1611854779393-1b2da9d400fe'), // roasted coffee bags
   bebidas:    unsplash('1461023058943-07fcbe16d735'), // iced coffee
   combos:     unsplash('1447933601403-0c6688de566e'), // multiple coffee bags
-  accesorios: '/img/accesorios.jpg',                  // local photo (tampers + portafilter)
-  equipos:    '/img/equipamiento.jpg',                // local photo (V60 pour-over with kettle)
+  accesorios: '/img/accesorios.jpeg',                 // local photo (tampers + portafilter)
+  equipos:    '/img/equipamientos.webp',              // local photo (V60 pour-over with kettle)
   regalos:    unsplash('1509042239860-f550ce710b93'), // coffee gift scene
 };
 
