@@ -10,7 +10,7 @@ const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-cor
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', weight: ['400', '500'] });
 
 export const metadata: Metadata = {
-  title: 'Cataluña · Café de especialidad en Asunción',
+  title: 'Cataluña Café & Bistró · Café de especialidad en Asunción',
   description: 'Tostado artesanal, origen único. Café con nombre y apellido.',
 };
 
