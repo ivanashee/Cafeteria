@@ -30,13 +30,29 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
   };
 
   return (
-    <div className="max-w-[1360px] mx-auto px-8 py-14 cs-fade">
-      <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
-        <div>
-          <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Catálogo completo</div>
-          <h1 className="font-display text-5xl md:text-6xl tracking-tight">Todos nuestros productos</h1>
-          <p className="text-sm text-stone mt-3">{products.length} de {totalActive} productos</p>
+    <div className="cs-fade">
+      {/* CATALOG HERO BANNER */}
+      <section className="relative h-[340px] overflow-hidden bg-coffeeDark">
+        <div
+          className="absolute inset-0 cs-ken-burns bg-cover bg-center"
+          style={{ backgroundImage: "url('https://source.unsplash.com/1920x600/?coffee-beans,roasted,bag&sig=catalogHero')" }}
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.75) 100%)' }} />
+        <span className="cs-corner cs-corner-hero cs-corner-tl" />
+        <span className="cs-corner cs-corner-hero cs-corner-tr" />
+        <span className="cs-corner cs-corner-hero cs-corner-bl" />
+        <span className="cs-corner cs-corner-hero cs-corner-br" />
+        <div className="absolute inset-0 grid place-items-center text-center text-cream px-8">
+          <div>
+            <div className="font-mono text-[11px] tracking-[0.32em] uppercase text-gold mb-4 cs-reveal cs-delay-100">— Catálogo completo</div>
+            <h1 className="font-display font-light text-5xl md:text-7xl tracking-tight cs-reveal cs-delay-200" style={{ textShadow: '0 4px 24px rgba(0,0,0,0.5)' }}>Todos nuestros productos</h1>
+            <p className="font-story italic text-lg md:text-xl text-cream/85 mt-4 cs-reveal cs-delay-300">{products.length} de {totalActive} productos disponibles</p>
+          </div>
         </div>
+      </section>
+
+      <div className="max-w-[1360px] mx-auto px-8 py-14">
+      <div className="flex items-end justify-end mb-10 gap-6 flex-wrap">
         <form action="/catalogo" method="get" className="flex gap-2 items-center">
           {Object.entries(sp).filter(([k]) => k !== 'sort').map(([k, v]) => (
             <input key={k} type="hidden" name={k} value={String(v ?? '')} />
@@ -104,7 +120,11 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
         <div>
           {products.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((p) => <ProductCard key={p.id} product={p} />)}
+              {products.map((p, i) => (
+                <div key={p.id} className="cs-reveal" style={{ animationDelay: `${Math.min(0.05 + (i % 6) * 0.08, 0.55)}s` }}>
+                  <ProductCard product={p} />
+                </div>
+              ))}
             </div>
           ) : (
             <div className="p-20 text-center border border-dashed border-border rounded-xl">
@@ -114,6 +134,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );
