@@ -58,11 +58,11 @@ export default function SortSelect({
 
       {/* Custom dropdown menu */}
       <div
-        className={`absolute left-0 right-0 top-full mt-2 z-50 origin-top rounded-2xl border border-border bg-cream shadow-[0_20px_40px_-12px_rgba(30,26,21,0.28)] overflow-hidden transition-all duration-200 ${open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-1 pointer-events-none'}`}
+        className={`absolute left-0 top-full mt-2 z-50 min-w-full w-max origin-top rounded-2xl border border-border bg-cream shadow-[0_20px_40px_-12px_rgba(30,26,21,0.28)] overflow-hidden transition-all duration-200 ${open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-1 pointer-events-none'}`}
         role="listbox"
       >
         {/* Art-decó header line */}
-        <div className="flex items-center gap-2 px-4 pt-3 pb-2 text-stone">
+        <div className="flex items-center gap-2 px-4 pt-3 pb-2 text-stone whitespace-nowrap">
           <span className="w-3 h-px bg-current opacity-40" />
           <svg width="8" height="8" viewBox="0 0 14 14" fill="none" className="text-gold"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="1"/></svg>
           <span className="font-mono text-[9px] tracking-[0.28em] uppercase">Ordenar por</span>
@@ -78,9 +78,9 @@ export default function SortSelect({
                   role="option"
                   aria-selected={selected}
                   onClick={() => { setValue(o.value); setOpen(false); }}
-                  className={`w-full text-left px-4 py-2.5 flex items-center justify-between gap-3 transition-colors ${selected ? 'bg-beige text-coffee' : 'text-mud hover:bg-beige/60 hover:text-coffee'}`}
+                  className={`w-full text-left px-4 py-2.5 flex items-center justify-between gap-6 whitespace-nowrap transition-colors ${selected ? 'bg-beige text-coffee' : 'text-mud hover:bg-beige/60 hover:text-coffee'}`}
                 >
-                  <span className="font-display italic text-[15px]">{o.label}</span>
+                  <span className="font-display italic text-[15px] whitespace-nowrap">{o.label}</span>
                   {selected ? (
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-gold"><path d="M5 12l5 5 10-11"/></svg>
                   ) : (
