@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <div className="p-10 cs-fade">
+    <div className="p-4 sm:p-6 lg:p-10 cs-fade">
       <h1 className="font-display text-4xl tracking-tight mb-8">Dashboard</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         {metrics.map((m) => (

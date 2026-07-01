@@ -23,7 +23,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   ];
 
   return (
-    <div className="max-w-[1360px] mx-auto px-8 pt-10 pb-24 cs-fade">
+    <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-24 cs-fade">
       <nav className="flex items-center gap-2 text-xs text-stone mb-8">
         <Link href="/" className="hover:text-coffee">Inicio</Link>
         <span>/</span>

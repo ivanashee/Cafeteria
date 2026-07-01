@@ -11,7 +11,7 @@ export default function CartPage() {
   const subtotal = items.reduce((a, i) => a + i.price * i.qty, 0);
 
   return (
-    <div className="max-w-[1200px] mx-auto px-8 py-14 cs-fade">
+    <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-14 cs-fade">
       <div className="mb-10">
         <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Tu selección</div>
         <h1 className="font-display text-5xl md:text-6xl tracking-tight">Carrito</h1>

@@ -38,7 +38,7 @@ export default function ContactPage() {
       </section>
 
       {/* CONTACT GRID */}
-      <section className="max-w-[1200px] mx-auto px-8 py-24">
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
@@ -92,7 +92,7 @@ export default function ContactPage() {
 
       {/* HOURS + MAP-STYLE PANEL */}
       <section className="bg-beige">
-        <div className="max-w-[1200px] mx-auto px-8 py-24 grid md:grid-cols-[1fr_1.2fr] gap-16 items-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 grid md:grid-cols-[1fr_1.2fr] gap-16 items-center">
           <Reveal variant="left">
             <div className="font-mono text-[11px] tracking-widest uppercase text-cocoaLight mb-4">— Horario de atención</div>
             <h2 className="font-display font-light text-5xl leading-tight tracking-tight mb-8">Cuando el café <em className="italic text-cocoaLight">está caliente.</em></h2>
@@ -169,7 +169,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA */}
-      <section className="max-w-[900px] mx-auto px-8 py-24 text-center">
+      <section className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
         <Reveal>
           <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-4">— ¿Alguna otra cosa?</div>
           <h3 className="font-display font-light text-4xl md:text-5xl tracking-tight mb-5">

@@ -32,7 +32,7 @@ export default async function CategoriesPage() {
   const { data: categories } = await sb.from('categories').select('*').order('sort_order');
 
   return (
-    <div className="p-10 cs-fade">
+    <div className="p-4 sm:p-6 lg:p-10 cs-fade">
       <h1 className="font-display text-4xl tracking-tight mb-8">Categorías</h1>
 
       <form action={saveCategory} className="p-6 rounded-xl border border-border bg-white mb-8 grid md:grid-cols-5 gap-3 items-end">
@@ -56,8 +56,8 @@ export default async function CategoriesPage() {
         <button className="h-10 px-4 rounded-full bg-coffee text-cream text-[13px]">Agregar</button>
       </form>
 
-      <div className="border border-border rounded-xl bg-white overflow-hidden">
-        <table className="w-full text-[13px]">
+      <div className="border border-border rounded-xl bg-white overflow-x-auto">
+        <table className="w-full min-w-[720px] text-[13px]">
           <thead className="bg-beige/60 text-stone">
             <tr>
               <th className="text-left px-4 py-3">Nombre</th>

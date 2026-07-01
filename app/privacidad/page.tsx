@@ -79,7 +79,7 @@ const SECTIONS: { title: string; body: string[] }[] = [
 
 export default function PrivacyPage() {
   return (
-    <div className="max-w-[820px] mx-auto px-8 py-24 cs-fade">
+    <div className="max-w-[820px] mx-auto px-4 sm:px-6 lg:px-8 py-24 cs-fade">
       <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-4">— Documento legal</div>
       <h1 className="font-display font-light text-5xl md:text-6xl leading-none tracking-tight mb-4">Política de <em className="italic text-cocoaLight">privacidad</em></h1>
       <p className="text-sm text-stone mb-12">Última actualización: 1 de julio de 2026</p>

@@ -21,7 +21,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
   const { data: orders } = await q;
 
   return (
-    <div className="p-10 cs-fade">
+    <div className="p-4 sm:p-6 lg:p-10 cs-fade">
       <h1 className="font-display text-4xl tracking-tight mb-8">Pedidos</h1>
 
       <div className="flex gap-2 mb-6 flex-wrap">
@@ -31,8 +31,8 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
         ))}
       </div>
 
-      <div className="border border-border rounded-xl bg-white overflow-hidden">
-        <table className="w-full text-[13px]">
+      <div className="border border-border rounded-xl bg-white overflow-x-auto">
+        <table className="w-full min-w-[780px] text-[13px]">
           <thead className="bg-beige/60 text-stone">
             <tr>
               <th className="text-left px-4 py-3">Código</th>

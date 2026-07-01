@@ -14,7 +14,7 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="max-w-[900px] mx-auto px-8 py-24 text-center cs-fade">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center cs-fade">
         <div className="font-display text-4xl mb-3">Nada para pagar</div>
         <div className="text-stone">Tu carrito está vacío.</div>
       </div>
@@ -50,7 +50,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-[1200px] mx-auto px-8 py-14 cs-fade">
+    <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-14 cs-fade">
       <div className="mb-10">
         <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Casi listo</div>
         <h1 className="font-display text-5xl tracking-tight">Finalizar pedido</h1>

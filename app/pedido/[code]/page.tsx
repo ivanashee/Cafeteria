@@ -15,7 +15,7 @@ export default async function OrderConfirmPage({ params }: { params: Promise<{ c
   const deliveryLabels: Record<string, string> = { delivery: 'Envío a domicilio', pickup: 'Retiro en local', express: 'Envío express' };
 
   return (
-    <div className="max-w-[900px] mx-auto px-8 py-24 cs-fade">
+    <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-24 cs-fade">
       <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-4">— Pedido {order.code}</div>
       <h1 className="font-display font-light text-5xl md:text-6xl leading-none tracking-tight mb-4">
         Gracias, {order.customer_name}.<br />Tu pedido está <em className="italic text-cocoaLight">en camino</em>.

@@ -27,7 +27,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
   const statuses = ['pending', 'confirmed', 'preparing', 'sent', 'delivered', 'cancelled'];
 
   return (
-    <div className="p-10 cs-fade">
+    <div className="p-4 sm:p-6 lg:p-10 cs-fade">
       <div className="mb-6">
         <Link href="/admin/dashboard/pedidos" className="text-xs uppercase tracking-widest text-stone hover:text-coffee">← Pedidos</Link>
         <div className="flex items-baseline gap-4 mt-3">

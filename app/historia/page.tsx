@@ -18,7 +18,7 @@ export default function AboutPage() {
             <line x1="475" y1="30" x2="495" y2="30" stroke="#C9A876" strokeWidth="0.5" />
           </svg>
         </div>
-        <div className="max-w-[980px] mx-auto px-8 pt-36 pb-24 text-center">
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24 text-center">
           <div className="cs-reveal" style={{ animationDelay: '0.1s' }}>
             <div className="font-mono text-[11px] tracking-[0.32em] uppercase text-stone mb-6">— Est. 2021 · Asunción, Paraguay —</div>
           </div>
@@ -36,7 +36,7 @@ export default function AboutPage() {
 
       {/* CHAPTER 1 */}
       <section className="bg-cream">
-        <div className="max-w-[1200px] mx-auto px-8 py-28 grid lg:grid-cols-[1fr_1.1fr] gap-24 items-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-28 grid lg:grid-cols-[1fr_1.1fr] gap-24 items-center">
           <div className="cs-reveal-left relative aspect-[4/5] rounded overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url('${FARM_IMAGE}')`, animationDelay: '0.15s' }}>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(30,22,17,0.25) 0%, rgba(30,22,17,0.65) 100%)' }} />
             <div className="absolute inset-5 border border-gold/40" />
@@ -58,7 +58,7 @@ export default function AboutPage() {
       {/* CHAPTER 2 - TIMELINE */}
       <section className="bg-coffee text-cream relative overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(115deg, transparent 0 24px, rgba(184,147,90,0.04) 24px 25px)' }} />
-        <div className="max-w-[1200px] mx-auto px-8 py-28 relative">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-28 relative">
           <div className="cs-reveal text-center mb-20" style={{ animationDelay: '0.1s' }}>
             <div className="font-mono text-[11px] tracking-widest uppercase text-gold mb-4">— Capítulo II · La línea de tiempo</div>
             <h2 className="font-display font-light text-5xl md:text-6xl tracking-tight">Cinco años, <em className="italic text-gold">siete fincas.</em></h2>
@@ -84,7 +84,7 @@ export default function AboutPage() {
 
       {/* CHAPTER 3 - PROCESS */}
       <section className="bg-cream">
-        <div className="max-w-[1200px] mx-auto px-8 py-28">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-28">
           <div className="cs-reveal text-center mb-16" style={{ animationDelay: '0.1s' }}>
             <div className="font-mono text-[11px] tracking-widest uppercase text-cocoaLight mb-4">— Capítulo III · El oficio</div>
             <h2 className="font-display text-5xl md:text-6xl tracking-tight">Del grano verde <em className="italic text-cocoaLight">a tu cocina.</em></h2>
@@ -111,7 +111,7 @@ export default function AboutPage() {
       {/* MANIFESTO */}
       <section className="bg-coffeeDark text-cream relative overflow-hidden">
         <div className="absolute inset-0" style={{ background: 'radial-gradient(1000px 500px at 50% 0%, rgba(201,168,118,0.18), transparent 60%)' }} />
-        <div className="max-w-[900px] mx-auto px-8 py-36 text-center relative">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-36 text-center relative">
           <div className="cs-reveal" style={{ animationDelay: '0.1s' }}>
             <div className="font-mono text-[11px] tracking-[0.32em] uppercase text-gold mb-8">— Manifiesto —</div>
           </div>
@@ -127,7 +127,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="bg-cream">
-        <div className="max-w-[900px] mx-auto px-8 py-28 text-center">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
           <div className="cs-reveal" style={{ animationDelay: '0.1s' }}>
             <h3 className="font-display text-4xl md:text-5xl tracking-tight mb-5">¿Probamos una taza?</h3>
             <p className="text-base text-stone mb-9">Elegí tu primer lote. Te contamos quién lo cultivó.</p>

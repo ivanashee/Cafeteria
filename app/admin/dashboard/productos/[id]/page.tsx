@@ -16,7 +16,7 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
   if (!isNew && !p) notFound();
 
   return (
-    <div className="p-10 cs-fade">
+    <div className="p-4 sm:p-6 lg:p-10 cs-fade">
       <div className="mb-8">
         <Link href="/admin/dashboard/productos" className="text-xs uppercase tracking-widest text-stone hover:text-coffee">← Productos</Link>
         <h1 className="font-display text-4xl tracking-tight mt-3">{isNew ? 'Nuevo producto' : p?.name}</h1>

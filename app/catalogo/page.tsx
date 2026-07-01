@@ -53,7 +53,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
         </div>
       </section>
 
-      <div className="max-w-[1360px] mx-auto px-8 py-14">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
       <div className="flex items-end justify-end mb-10 gap-6 flex-wrap">
         <form action="/catalogo" method="get" className="flex gap-2 items-center">
           {Object.entries(sp).filter(([k]) => k !== 'sort').map(([k, v]) => (
@@ -71,9 +71,9 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
         </form>
       </div>
 
-      <div className="grid lg:grid-cols-[240px_1fr] gap-12 items-start">
+      <div className="grid lg:grid-cols-[240px_1fr] gap-8 lg:gap-12 items-start">
         {/* FILTERS */}
-        <aside className="sticky top-24 flex flex-col gap-8">
+        <aside className="lg:sticky lg:top-24 flex flex-col gap-6 lg:gap-8">
           <form action="/catalogo" method="get">
             {sp.cat && <input type="hidden" name="cat" value={sp.cat} />}
             <div className="relative">
@@ -121,7 +121,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
         {/* GRID */}
         <div>
           {products.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {products.map((p, i) => (
                 <Reveal key={p.id} delay={(i % 6) * 90}>
                   <ProductCard product={p} />

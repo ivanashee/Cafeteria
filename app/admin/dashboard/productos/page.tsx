@@ -10,7 +10,7 @@ export default async function AdminProductsPage() {
   const { data: products } = await sb.from('products').select('*, categories(name)').order('created_at', { ascending: false });
 
   return (
-    <div className="p-10 cs-fade">
+    <div className="p-4 sm:p-6 lg:p-10 cs-fade">
       <div className="flex items-end justify-between mb-8">
         <h1 className="font-display text-4xl tracking-tight">Productos</h1>
         <Link href="/admin/dashboard/productos/nuevo" className="h-10 px-4 rounded-full bg-coffee text-cream text-[13px] inline-flex items-center gap-2 hover:bg-cocoa">
@@ -18,8 +18,8 @@ export default async function AdminProductsPage() {
           Nuevo producto
         </Link>
       </div>
-      <div className="border border-border rounded-xl bg-white overflow-hidden">
-        <table className="w-full text-[13px]">
+      <div className="border border-border rounded-xl bg-white overflow-x-auto">
+        <table className="w-full min-w-[820px] text-[13px]">
           <thead className="bg-beige/60 text-stone">
             <tr>
               <th className="text-left px-4 py-3">Producto</th>

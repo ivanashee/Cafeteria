@@ -29,7 +29,7 @@ export default async function HomePage() {
     <div className="cs-fade">
       {!configured && (
         <div className="bg-yellow-50 border-b border-yellow-200 text-yellow-900 text-sm">
-          <div className="max-w-[1360px] mx-auto px-8 py-3 flex items-center gap-3">
+          <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3">
             <span className="font-mono text-[10px] tracking-widest uppercase bg-yellow-200 px-2 py-1 rounded">Config</span>
             <span>La app se está renderizando sin datos porque faltan las variables de entorno de Supabase en Vercel. Cargalas en <strong>Project Settings → Environment Variables</strong> y hacé redeploy.</span>
           </div>
@@ -51,7 +51,7 @@ export default async function HomePage() {
         <span className="cs-corner cs-corner-hero cs-corner-bl cs-fade cs-delay-300" />
         <span className="cs-corner cs-corner-hero cs-corner-br cs-fade cs-delay-300" />
         <div className="absolute inset-0 grid place-items-center">
-          <div className="text-center text-cream px-10 max-w-[960px]">
+          <div className="text-center text-cream px-6 sm:px-10 max-w-[960px]">
             <Reveal delay={100} className="flex items-center justify-center gap-3.5 mb-8 text-gold">
               <span className="w-16 h-px bg-current opacity-60" />
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="0.8"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></svg>
@@ -81,7 +81,7 @@ export default async function HomePage() {
 
       {/* BENEFITS */}
       <section className="border-b border-border">
-        <div className="max-w-[1360px] mx-auto px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { n: 'i', title: 'Tueste artesanal', text: 'Lotes pequeños semanales' },
             { n: 'ii', title: 'Envío 48h', text: 'Todo el país' },
@@ -102,7 +102,7 @@ export default async function HomePage() {
       </section>
 
       {/* FEATURED */}
-      <section className="max-w-[1360px] mx-auto px-8 pt-24 pb-8">
+      <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-6">
         <Reveal className="flex items-end justify-between mb-12 gap-6 flex-wrap">
           <div>
             <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Selección de la semana</div>
@@ -122,7 +122,7 @@ export default async function HomePage() {
       </section>
 
       {/* CATEGORIES */}
-      <section className="max-w-[1360px] mx-auto px-8 py-24">
+      <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <Reveal className="mb-12">
           <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Comprá por categoría</div>
           <h2 className="font-display font-normal text-5xl tracking-tight">Todo para tu ritual</h2>
@@ -153,7 +153,7 @@ export default async function HomePage() {
 
       {/* EDITORIAL */}
       <section className="bg-coffee text-cream">
-        <div className="max-w-[1360px] mx-auto px-8 py-32 grid lg:grid-cols-[1.1fr_1fr] gap-24 items-center">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-32 grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-24 items-center">
           <Reveal variant="left">
             <div className="font-mono text-[11px] tracking-widest uppercase text-gold mb-6">— Un buen café empieza antes</div>
             <h2 className="font-display font-light text-5xl lg:text-6xl leading-[1.04] tracking-tight mb-6">Del <em className="italic text-gold">productor</em> a tu cocina, con nombre y apellido.</h2>
