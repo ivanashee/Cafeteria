@@ -58,7 +58,7 @@ export default function SortSelect({
 
       {/* Custom dropdown menu */}
       <div
-        className={`absolute left-0 right-0 top-full mt-2 origin-top rounded-2xl border border-border bg-cream shadow-[0_20px_40px_-12px_rgba(30,26,21,0.28)] overflow-hidden transition-all duration-200 ${open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-1 pointer-events-none'}`}
+        className={`absolute left-0 right-0 top-full mt-2 z-50 origin-top rounded-2xl border border-border bg-cream shadow-[0_20px_40px_-12px_rgba(30,26,21,0.28)] overflow-hidden transition-all duration-200 ${open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-1 pointer-events-none'}`}
         role="listbox"
       >
         {/* Art-decó header line */}

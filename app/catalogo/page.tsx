@@ -72,7 +72,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
           <span className="w-10 h-px bg-current opacity-40" />
         </div>
 
-        <form action="/catalogo" method="get" className="group relative inline-flex items-stretch bg-cream border border-border rounded-full shadow-[0_2px_10px_-4px_rgba(30,26,21,0.12)] transition-all hover:shadow-[0_6px_18px_-8px_rgba(30,26,21,0.24)] hover:border-coffee/40">
+        <form action="/catalogo" method="get" className="group relative z-30 inline-flex items-stretch bg-cream border border-border rounded-full shadow-[0_2px_10px_-4px_rgba(30,26,21,0.12)] transition-all hover:shadow-[0_6px_18px_-8px_rgba(30,26,21,0.24)] hover:border-coffee/40">
           {Object.entries(sp).filter(([k]) => k !== 'sort').map(([k, v]) => (
             <input key={k} type="hidden" name={k} value={String(v ?? '')} />
           ))}
