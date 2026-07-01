@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import { MOUNTAINS_IMAGE } from '@/lib/images';
 
-export const metadata = { title: 'Contacto · Coffee Store' };
+export const metadata = { title: 'Contacto · Cataluña' };
 
 export default function ContactPage() {
   return (

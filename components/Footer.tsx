@@ -8,8 +8,8 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/img/logo.png" alt="Coffee Store" className="w-14 h-14 object-contain" />
-              <span className="font-display text-[22px] text-cream font-medium">Coffee Store</span>
+              <img src="/img/logo.png" alt="Cataluña" className="w-14 h-14 object-contain" />
+              <span className="font-display text-[22px] text-cream font-medium">Cataluña</span>
             </div>
             <p className="text-sm leading-relaxed mb-6 max-w-[320px]">Café de especialidad tostado en Asunción, entregado a tu puerta.</p>
           </div>
@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="pt-8 border-t border-cream/10 flex flex-wrap justify-between items-center gap-4 text-xs text-cream/50">
-          <div>© {new Date().getFullYear()} Coffee Store · Hecho con espresso doble en Asunción</div>
+          <div>© {new Date().getFullYear()} Cataluña · Hecho con espresso doble en Asunción</div>
           <div className="flex items-center gap-2">
             <span>Desarrollado por</span>
             <a

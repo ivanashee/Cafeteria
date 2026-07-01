@@ -1,4 +1,4 @@
-# Coffee Store
+# Cataluña
 
 Tienda de café de especialidad, construida con Next.js 15 + Supabase.
 

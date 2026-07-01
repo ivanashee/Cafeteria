@@ -1,15 +1,15 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Política de privacidad · Coffee Store',
-  description: 'Cómo tratamos tus datos personales en Coffee Store.',
+  title: 'Política de privacidad · Cataluña',
+  description: 'Cómo tratamos tus datos personales en Cataluña.',
 };
 
 const SECTIONS: { title: string; body: string[] }[] = [
   {
     title: '1. Quiénes somos',
     body: [
-      'Coffee Store es una tostaduría independiente con sede en Asunción, Paraguay. En este documento describimos qué datos personales recolectamos cuando visitás nuestro sitio o hacés un pedido, con qué finalidad, cuánto tiempo los conservamos y qué derechos tenés sobre ellos.',
+      'Cataluña es una tostaduría independiente con sede en Asunción, Paraguay. En este documento describimos qué datos personales recolectamos cuando visitás nuestro sitio o hacés un pedido, con qué finalidad, cuánto tiempo los conservamos y qué derechos tenés sobre ellos.',
     ],
   },
   {
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
       </div>
 
       <div className="mt-16 pt-8 border-t border-border flex flex-wrap gap-3 justify-between items-center text-sm">
-        <div className="text-stone">© {new Date().getFullYear()} Coffee Store</div>
+        <div className="text-stone">© {new Date().getFullYear()} Cataluña</div>
         <div className="flex gap-4">
           <Link href="/contacto" className="text-coffee border-b border-coffee/40 hover:border-coffee">Contacto</Link>
           <Link href="/" className="text-coffee border-b border-coffee/40 hover:border-coffee">Volver al inicio</Link>

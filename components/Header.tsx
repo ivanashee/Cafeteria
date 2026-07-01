@@ -35,8 +35,8 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 lg:gap-2.5 lg:justify-self-start">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/logo.png" alt="Coffee Store" className="w-12 h-12 lg:w-14 lg:h-14 object-contain" />
-          <span className="font-display text-lg lg:text-xl font-medium tracking-tight">Coffee Store</span>
+          <img src="/img/logo.png" alt="Cataluña" className="w-12 h-12 lg:w-14 lg:h-14 object-contain" />
+          <span className="font-display text-lg lg:text-xl font-medium tracking-tight">Cataluña</span>
         </Link>
 
         {/* Desktop nav (hidden on mobile) */}

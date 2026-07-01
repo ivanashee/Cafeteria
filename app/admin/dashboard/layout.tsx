@@ -7,9 +7,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="lg:border-r border-b lg:border-b-0 border-border bg-white p-4 lg:p-6 flex lg:flex-col lg:gap-6 gap-3 items-center lg:items-stretch overflow-x-auto">
         <Link href="/admin/dashboard" className="flex items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/logo.png" alt="Coffee Store" className="w-11 h-11 object-contain" />
+          <img src="/img/logo.png" alt="Cataluña" className="w-11 h-11 object-contain" />
           <div>
-            <div className="font-display text-base">Coffee Store</div>
+            <div className="font-display text-base">Cataluña</div>
             <div className="font-mono text-[10px] tracking-widest uppercase text-stone">Admin</div>
           </div>
         </Link>

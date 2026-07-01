@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FARM_IMAGE } from '@/lib/images';
 
-export const metadata = { title: 'Nuestra historia · Coffee Store' };
+export const metadata = { title: 'Nuestra historia · Cataluña' };
 
 export default function AboutPage() {
   return (
