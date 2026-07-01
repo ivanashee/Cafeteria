@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
       <form onSubmit={onSubmit} className="w-full max-w-[400px] p-10 bg-cream rounded-2xl">
         <div className="text-center mb-8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/logo.png" alt="Coffee Store" className="w-16 h-16 mx-auto mb-4 object-contain" />
+          <img src="/img/logo.png" alt="Coffee Store" className="w-24 h-24 mx-auto mb-4 object-contain" />
           <div className="font-mono text-[10px] tracking-widest uppercase text-stone mb-2">Panel administrativo</div>
           <div className="font-display text-3xl">Coffee Store</div>
         </div>

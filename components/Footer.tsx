@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/img/logo.png" alt="Coffee Store" className="w-10 h-10 object-contain" />
+              <img src="/img/logo.png" alt="Coffee Store" className="w-14 h-14 object-contain" />
               <span className="font-display text-[22px] text-cream font-medium">Coffee Store</span>
             </div>
             <p className="text-sm leading-relaxed mb-6 max-w-[320px]">Café de especialidad tostado en Asunción, entregado a tu puerta.</p>
