@@ -26,6 +26,9 @@ export const EDITORIAL_IMAGE =
 export const FARM_IMAGE =
   'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80';
 
+export const MOUNTAINS_IMAGE =
+  'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80';
+
 export const CATEGORY_IMAGES = [
   'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=800&q=80',
   'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80',
