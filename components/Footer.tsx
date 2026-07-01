@@ -34,9 +34,12 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="pt-8 border-t border-cream/10 flex justify-between text-xs text-cream/50">
-          <div>© {new Date().getFullYear()} Coffee Store</div>
-          <div>Hecho con espresso doble en Asunción</div>
+        <div className="pt-8 border-t border-cream/10 flex flex-wrap justify-between items-center gap-4 text-xs text-cream/50">
+          <div>© {new Date().getFullYear()} Coffee Store · Hecho con espresso doble en Asunción</div>
+          <div className="flex items-center gap-2">
+            <span>Desarrollado por</span>
+            <span className="font-display italic text-gold text-sm tracking-wide">neura</span>
+          </div>
         </div>
       </div>
     </footer>
