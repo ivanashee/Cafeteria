@@ -19,12 +19,12 @@ export const MOUNTAINS_IMAGE = unsplash('1464822759023-fed622ff2c3b', 1920);
  * up with a YouTube screenshot under "Accesorios").
  */
 export const CATEGORY_IMAGE_BY_SLUG: Record<string, string> = {
-  cafe:       unsplash('1611854779393-1b2da9d400fe'), // roasted coffee bags
-  bebidas:    unsplash('1461023058943-07fcbe16d735'), // iced coffee
-  combos:     unsplash('1447933601403-0c6688de566e'), // multiple coffee bags
-  accesorios: '/img/accesorios.jpeg',                 // local photo (tampers + portafilter)
-  equipos:    '/img/equipamientos.webp',              // local photo (V60 pour-over with kettle)
-  regalos:    unsplash('1509042239860-f550ce710b93'), // coffee gift scene
+  cafe:          unsplash('1611854779393-1b2da9d400fe'), // roasted coffee bags
+  bebidas:       unsplash('1461023058943-07fcbe16d735'), // iced coffee
+  combos:        unsplash('1447933601403-0c6688de566e'), // multiple coffee bags
+  'menu-del-dia': unsplash('1546069901-ba9599a7e63c'),   // plated meal (menu of the day)
+  equipos:       '/img/equipamientos.webp',              // local photo (V60 pour-over with kettle)
+  regalos:       unsplash('1509042239860-f550ce710b93'), // coffee gift scene
 };
 
 /** Deterministic fallback list for unknown category slugs. */
@@ -43,11 +43,13 @@ const PER_SLUG: Record<string, string> = {
   'cold-brew-lata':    '1544787219-7f47ccb76574',    // canned drink coffee
   'combo-degustacion': '1610889556528-9a770e32642f', // several coffee bags
   'combo-oficina':     '1522992319-0365e5f11656',    // large coffee bag
-  'taza-ceramica':     '1495474472287-4d71bcdd2085', // ceramic mug with coffee
-  'termo-acero':       '1516685018646-549198525c1b', // thermos / travel mug
   'v60-hario':         '1516315720917-231ef9acce48', // pour over v60
   'prensa-francesa':   '1445116572660-236099ec97a0', // french press
   'box-regalo-inicio': '1524350876685-274059332603', // coffee gift box
+  // Menú del día
+  'lasana-de-pollo':   '1574894709920-11b28e7367e3', // baked pasta / lasagna
+  'vori-vori-de-pollo':'1607330289024-1535c6b4e1c1', // hearty soup
+  'chop-suey-de-carne':'1512621776951-a57141f2eefd', // beef stir-fry
 };
 
 /** Category-slug fallback when we don't have a per-product mapping. */
