@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
+import { isSupabaseConfigured } from '@/lib/supabase/server';
 
 export const revalidate = 60;
 
 export default async function HomePage() {
+  const configured = isSupabaseConfigured();
   const [featured, categories, counts] = await Promise.all([
     getProducts({ featured: true, inStock: true, limit: 4 }),
     getCategories(),
@@ -15,6 +17,14 @@ export default async function HomePage() {
 
   return (
     <div className="cs-fade">
+      {!configured && (
+        <div className="bg-yellow-50 border-b border-yellow-200 text-yellow-900 text-sm">
+          <div className="max-w-[1360px] mx-auto px-8 py-3 flex items-center gap-3">
+            <span className="font-mono text-[10px] tracking-widest uppercase bg-yellow-200 px-2 py-1 rounded">Config</span>
+            <span>La app se está renderizando sin datos porque faltan las variables de entorno de Supabase en Vercel. Cargalas en <strong>Project Settings → Environment Variables</strong> y hacé redeploy.</span>
+          </div>
+        </div>
+      )}
       {/* HERO */}
       <section className="relative h-[780px] max-h-[96vh] overflow-hidden bg-coffeeDark">
         {/* Coffee background image with Ken Burns zoom */}

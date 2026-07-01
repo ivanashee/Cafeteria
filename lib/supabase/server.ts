@@ -3,7 +3,12 @@ import { cookies } from 'next/headers';
 
 const SCHEMA = process.env.NEXT_PUBLIC_SUPABASE_SCHEMA || 'coffeestore';
 
+export function isSupabaseConfigured() {
+  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+}
+
 export async function supabaseServer() {
+  if (!isSupabaseConfigured()) return null;
   const cookieStore = await cookies();
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
