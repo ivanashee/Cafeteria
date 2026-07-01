@@ -54,20 +54,56 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
       </section>
 
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-      <div className="flex items-end justify-end mb-10 gap-6 flex-wrap">
-        <form action="/catalogo" method="get" className="flex gap-2 items-center">
+      <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
+        <div className="hidden md:flex items-center gap-3 text-stone">
+          <span className="w-10 h-px bg-current opacity-40" />
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="0.8"/></svg>
+          <span className="font-mono text-[10px] tracking-[0.32em] uppercase">Catálogo</span>
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="0.8"/></svg>
+          <span className="w-10 h-px bg-current opacity-40" />
+        </div>
+
+        <form action="/catalogo" method="get" className="group relative inline-flex items-stretch bg-cream border border-border rounded-full overflow-hidden shadow-[0_2px_10px_-4px_rgba(30,26,21,0.12)] transition-all hover:shadow-[0_6px_18px_-8px_rgba(30,26,21,0.24)] hover:border-coffee/40">
           {Object.entries(sp).filter(([k]) => k !== 'sort').map(([k, v]) => (
             <input key={k} type="hidden" name={k} value={String(v ?? '')} />
           ))}
-          <span className="text-xs tracking-wide uppercase text-stone">Ordenar</span>
-          <select name="sort" defaultValue={sort} className="h-10 pl-4 pr-8 rounded-full border border-border bg-cream text-[13px]">
-            <option value="recent">Más recientes</option>
-            <option value="price-asc">Precio: menor a mayor</option>
-            <option value="price-desc">Precio: mayor a menor</option>
-            <option value="name-asc">Nombre A–Z</option>
-            <option value="name-desc">Nombre Z–A</option>
-          </select>
-          <button className="h-10 px-4 rounded-full bg-coffee text-cream text-xs">Aplicar</button>
+          <div className="flex items-center gap-2 pl-5 pr-3">
+            <svg width="10" height="10" viewBox="0 0 14 14" fill="none" className="text-gold"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="1"/></svg>
+            <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-stone">Ordenar</span>
+          </div>
+          <span className="w-px bg-border" />
+          <div className="relative flex items-center">
+            <select
+              name="sort"
+              defaultValue={sort}
+              className="appearance-none bg-transparent h-11 pl-4 pr-9 font-display italic text-[15px] text-coffee outline-none cursor-pointer"
+            >
+              <option value="recent">Más recientes</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="name-asc">Nombre A–Z</option>
+              <option value="name-desc">Nombre Z–A</option>
+            </select>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              className="pointer-events-none absolute right-3 text-coffee/70"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <button
+            aria-label="Aplicar orden"
+            className="ml-1 my-1 mr-1 px-4 rounded-full bg-coffee text-cream text-[11px] font-mono tracking-[0.24em] uppercase inline-flex items-center gap-2 hover:bg-cocoa transition-all"
+          >
+            Aplicar
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
         </form>
       </div>
 
