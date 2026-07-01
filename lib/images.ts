@@ -13,14 +13,26 @@ export const EDITORIAL_IMAGE = unsplash('1512568400610-62da28bc8a13', 800);
 export const FARM_IMAGE = unsplash('1497935586351-b67a49e012bf', 800);
 export const MOUNTAINS_IMAGE = unsplash('1464822759023-fed622ff2c3b', 1920);
 
-export const CATEGORY_IMAGES = [
-  unsplash('1611854779393-1b2da9d400fe'),
-  unsplash('1461023058943-07fcbe16d735'),
-  unsplash('1447933601403-0c6688de566e'),
-  unsplash('1521302200778-33500795e128'),
-  unsplash('1495474472287-4d71bcdd2085'),
-  unsplash('1509042239860-f550ce710b93'),
-];
+/**
+ * Category images — keyed by category slug so ordering changes in the DB
+ * don't rotate the wrong picture into the wrong category (that's how we ended
+ * up with a YouTube screenshot under "Accesorios").
+ */
+export const CATEGORY_IMAGE_BY_SLUG: Record<string, string> = {
+  cafe:       unsplash('1611854779393-1b2da9d400fe'), // roasted coffee bags
+  bebidas:    unsplash('1461023058943-07fcbe16d735'), // iced coffee
+  combos:     unsplash('1447933601403-0c6688de566e'), // multiple coffee bags
+  accesorios: unsplash('1523983388277-336a66bf9bcd'), // ceramic mug (safe accessories shot)
+  equipos:    unsplash('1495474472287-4d71bcdd2085'), // brewing / cups
+  regalos:    unsplash('1509042239860-f550ce710b93'), // coffee gift scene
+};
+
+/** Deterministic fallback list for unknown category slugs. */
+export const CATEGORY_IMAGES = Object.values(CATEGORY_IMAGE_BY_SLUG);
+
+export function categoryImage(slug: string, index = 0): string {
+  return CATEGORY_IMAGE_BY_SLUG[slug] ?? CATEGORY_IMAGES[index % CATEGORY_IMAGES.length];
+}
 
 /** Map from product slug → specific Unsplash photo ID relevant to that item. */
 const PER_SLUG: Record<string, string> = {

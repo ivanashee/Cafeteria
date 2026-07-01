@@ -3,7 +3,7 @@ import FeaturedCarousel from '@/components/FeaturedCarousel';
 import Reveal from '@/components/Reveal';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
 import { isSupabaseConfigured } from '@/lib/supabase/server';
-import { HERO_IMAGE, CATEGORY_IMAGES, EDITORIAL_IMAGE } from '@/lib/images';
+import { HERO_IMAGE, categoryImage, EDITORIAL_IMAGE } from '@/lib/images';
 
 export const revalidate = 60;
 
@@ -137,7 +137,7 @@ export default async function HomePage() {
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url('${CATEGORY_IMAGES[i % CATEGORY_IMAGES.length]}')` }}
+                  style={{ backgroundImage: `url('${categoryImage(c.slug, i)}')` }}
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(30,26,21,0.25) 0%, rgba(30,26,21,0.75) 100%)' }} />
                 <div className="relative font-mono text-[10px] tracking-widest uppercase text-cream/80">{counts[c.slug] ?? 0} productos</div>
