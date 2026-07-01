@@ -7,7 +7,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 mb-16">
           <div>
             <div className="flex items-center gap-2.5 mb-5">
-              <span className="w-8 h-8 rounded-full bg-gold text-coffeeDark inline-grid place-items-center font-display italic text-lg font-medium">c</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/img/logo.png" alt="Coffee Store" className="w-10 h-10 object-contain" />
               <span className="font-display text-[22px] text-cream font-medium">Coffee Store</span>
             </div>
             <p className="text-sm leading-relaxed mb-6 max-w-[320px]">Café de especialidad tostado en Asunción, entregado a tu puerta.</p>

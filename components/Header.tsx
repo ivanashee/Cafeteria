@@ -33,7 +33,8 @@ export default function Header() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4 grid grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_auto_1fr] items-center gap-3 lg:gap-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 lg:gap-2.5 lg:justify-self-start">
-          <span className="w-8 h-8 rounded-full bg-coffee text-cream inline-grid place-items-center font-display italic text-lg">c</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/logo.png" alt="Coffee Store" className="w-9 h-9 lg:w-10 lg:h-10 object-contain" />
           <span className="font-display text-lg lg:text-xl font-medium tracking-tight">Coffee Store</span>
         </Link>
 
