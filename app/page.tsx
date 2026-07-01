@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ProductCard from '@/components/ProductCard';
+import FeaturedCarousel from '@/components/FeaturedCarousel';
 import Reveal from '@/components/Reveal';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
 import { isSupabaseConfigured } from '@/lib/supabase/server';
@@ -9,11 +9,19 @@ export const revalidate = 60;
 
 export default async function HomePage() {
   const configured = isSupabaseConfigured();
-  const [featured, categories, counts] = await Promise.all([
-    getProducts({ featured: true, inStock: true, limit: 4 }),
+  const [featured, extra, categories, counts] = await Promise.all([
+    getProducts({ featured: true, inStock: true, limit: 12 }),
+    getProducts({ inStock: true, limit: 12 }),
     getCategories(),
     getCategoryCounts(),
   ]);
+  // Combine featured + rest, dedup, cap at 12 so the carousel has multiple pages
+  const seen = new Set<string>();
+  const carouselProducts = [...featured, ...extra].filter((p) => {
+    if (seen.has(p.id)) return false;
+    seen.add(p.id);
+    return true;
+  }).slice(0, 12);
 
   const swatches = ['#7A4A2E', '#B84A3A', '#4A5D3A', '#C9A876', '#3D2A1E', '#D9A05B'];
 
@@ -102,14 +110,10 @@ export default async function HomePage() {
           </div>
           <Link href="/catalogo" className="text-xs tracking-wide uppercase text-coffee pb-1 border-b border-coffee">Ver todos</Link>
         </Reveal>
-        {featured.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featured.map((p, i) => (
-              <Reveal key={p.id} delay={i * 120}>
-                <ProductCard product={p} />
-              </Reveal>
-            ))}
-          </div>
+        {carouselProducts.length > 0 ? (
+          <Reveal>
+            <FeaturedCarousel products={carouselProducts} />
+          </Reveal>
         ) : (
           <div className="p-16 text-center border border-dashed border-border rounded-xl text-stone">
             No hay productos destacados aún. Cargá algunos desde el admin o corré <code className="font-mono">supabase/seed.sql</code>.
