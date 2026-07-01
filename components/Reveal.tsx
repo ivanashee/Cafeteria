@@ -45,18 +45,18 @@ export default function Reveal({
   }, [once]);
 
   const baseFrom: Record<Variant, string> = {
-    up: 'opacity-0 translate-y-8',
-    left: 'opacity-0 -translate-x-8',
-    right: 'opacity-0 translate-x-8',
+    up: 'opacity-0 translate-y-16',
+    left: 'opacity-0 -translate-x-16',
+    right: 'opacity-0 translate-x-16',
     fade: 'opacity-0',
-    scale: 'opacity-0 scale-95',
+    scale: 'opacity-0 scale-90',
   };
   const to = 'opacity-100 translate-x-0 translate-y-0 scale-100';
   const T = Tag as any;
   return (
     <T
       ref={ref as any}
-      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] will-change-transform ${visible ? to : baseFrom[variant]} ${className}`}
+      className={`transition-all duration-[1100ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] will-change-transform ${visible ? to : baseFrom[variant]} ${className}`}
       style={{ ...style, transitionDelay: `${delay}ms` }}
     >
       {children}

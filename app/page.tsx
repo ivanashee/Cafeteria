@@ -34,37 +34,37 @@ export default async function HomePage() {
           className="absolute inset-0 cs-ken-burns bg-cover bg-center"
           style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
         />
-        {/* Dark gradient overlay for text legibility */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.72) 0%, rgba(20,16,12,0.58) 40%, rgba(20,16,12,0.85) 100%)' }} />
+        {/* Lighter overlay so the coffee photo actually shows through */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.35) 0%, rgba(20,16,12,0.25) 45%, rgba(20,16,12,0.6) 100%)' }} />
         {/* Warm radial glow */}
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(1400px 700px at 50% 45%, rgba(201, 168, 118, 0.22), transparent 60%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(1400px 700px at 50% 45%, rgba(201, 168, 118, 0.18), transparent 60%)' }} />
         <span className="cs-corner cs-corner-hero cs-corner-tl cs-fade cs-delay-300" />
         <span className="cs-corner cs-corner-hero cs-corner-tr cs-fade cs-delay-300" />
         <span className="cs-corner cs-corner-hero cs-corner-bl cs-fade cs-delay-300" />
         <span className="cs-corner cs-corner-hero cs-corner-br cs-fade cs-delay-300" />
         <div className="absolute inset-0 grid place-items-center">
           <div className="text-center text-cream px-10 max-w-[960px]">
-            <div className="flex items-center justify-center gap-3.5 mb-8 text-gold cs-reveal cs-delay-100">
+            <Reveal delay={100} className="flex items-center justify-center gap-3.5 mb-8 text-gold">
               <span className="w-16 h-px bg-current opacity-60" />
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="0.8"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></svg>
               <span className="font-mono text-[10px] tracking-[0.36em] uppercase">Est. MMXXI</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polygon points="7,1 13,7 7,13 1,7" stroke="currentColor" strokeWidth="0.8"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></svg>
               <span className="w-16 h-px bg-current opacity-60" />
-            </div>
-            <h1 className="font-display font-light text-5xl md:text-7xl lg:text-8xl leading-[0.96] tracking-tight mb-7 cs-reveal cs-delay-200" style={{ textShadow: '0 4px 32px rgba(0,0,0,0.5)' }}>
+            </Reveal>
+            <Reveal delay={300} as="h1" className="font-display font-light text-5xl md:text-7xl lg:text-8xl leading-[0.96] tracking-tight mb-7" style={{ textShadow: '0 4px 32px rgba(0,0,0,0.5)' }}>
               El café que <em className="italic text-gold">despierta</em><br />lo mejor de tu día
-            </h1>
-            <div className="flex justify-center mb-7 cs-reveal cs-delay-300"><span className="w-10 h-px bg-gold/60" /></div>
-            <p className="font-story italic text-xl md:text-2xl leading-relaxed text-cream/80 max-w-[560px] mx-auto mb-11 cs-reveal cs-delay-400">
+            </Reveal>
+            <Reveal delay={500} className="flex justify-center mb-7"><span className="w-10 h-px bg-gold/60" /></Reveal>
+            <Reveal delay={600} as="p" className="font-story italic text-xl md:text-2xl leading-relaxed text-cream/80 max-w-[560px] mx-auto mb-11">
               Granos seleccionados, tostados en pequeños lotes y entregados a tu puerta en 48 horas. Del cafetal a tu taza, sin intermediarios.
-            </p>
-            <div className="inline-flex gap-3 flex-wrap justify-center cs-reveal cs-delay-500">
+            </Reveal>
+            <Reveal delay={800} className="inline-flex gap-3 flex-wrap justify-center">
               <Link href="/catalogo" className="h-13 min-h-[52px] px-7 rounded-full bg-cream text-ink text-sm font-medium tracking-wide inline-flex items-center gap-2.5 hover:bg-gold transition">
                 Explorar catálogo
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </Link>
               <Link href="/historia" className="h-13 min-h-[52px] px-7 rounded-full border border-cream/25 text-cream text-sm tracking-wide inline-flex items-center hover:bg-cream/10 transition">Nuestra historia</Link>
-            </div>
+            </Reveal>
           </div>
         </div>
         {/* Bottom scroll cue */}
