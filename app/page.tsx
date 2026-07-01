@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
+import Reveal from '@/components/Reveal';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
 import { isSupabaseConfigured } from '@/lib/supabase/server';
+import { HERO_IMAGE, CATEGORY_IMAGES, EDITORIAL_IMAGE } from '@/lib/images';
 
 export const revalidate = 60;
 
@@ -30,7 +32,7 @@ export default async function HomePage() {
         {/* Coffee background image with Ken Burns zoom */}
         <div
           className="absolute inset-0 cs-ken-burns bg-cover bg-center"
-          style={{ backgroundImage: "url('https://source.unsplash.com/1920x1080/?coffee,espresso,dark&sig=hero1')" }}
+          style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
         />
         {/* Dark gradient overlay for text legibility */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.72) 0%, rgba(20,16,12,0.58) 40%, rgba(20,16,12,0.85) 100%)' }} />
@@ -78,7 +80,7 @@ export default async function HomePage() {
             { n: 'iii', title: 'Origen trazable', text: 'Nombre del productor' },
             { n: 'iv', title: 'Recién tostado', text: '< 72h desde tostado' },
           ].map((b, i) => (
-            <div key={b.n} className="flex items-center gap-3.5 cs-reveal" style={{ animationDelay: `${0.1 + i * 0.1}s` }}>
+            <Reveal key={b.n} delay={i * 100} className="flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-full bg-beige grid place-items-center flex-shrink-0">
                 <span className="font-display italic text-coffee">{b.n}</span>
               </div>
@@ -86,26 +88,26 @@ export default async function HomePage() {
                 <div className="text-sm font-medium">{b.title}</div>
                 <div className="text-xs text-stone mt-0.5">{b.text}</div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* FEATURED */}
       <section className="max-w-[1360px] mx-auto px-8 pt-24 pb-8">
-        <div className="flex items-end justify-between mb-12 gap-6 flex-wrap cs-reveal">
+        <Reveal className="flex items-end justify-between mb-12 gap-6 flex-wrap">
           <div>
             <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Selección de la semana</div>
             <h2 className="font-display font-normal text-5xl tracking-tight">Destacados</h2>
           </div>
           <Link href="/catalogo" className="text-xs tracking-wide uppercase text-coffee pb-1 border-b border-coffee">Ver todos</Link>
-        </div>
+        </Reveal>
         {featured.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featured.map((p, i) => (
-              <div key={p.id} className="cs-reveal" style={{ animationDelay: `${0.15 + i * 0.1}s` }}>
+              <Reveal key={p.id} delay={i * 120}>
                 <ProductCard product={p} />
-              </div>
+              </Reveal>
             ))}
           </div>
         ) : (
@@ -117,30 +119,21 @@ export default async function HomePage() {
 
       {/* CATEGORIES */}
       <section className="max-w-[1360px] mx-auto px-8 py-24">
-        <div className="mb-12 cs-reveal">
+        <Reveal className="mb-12">
           <div className="font-mono text-[11px] tracking-widest uppercase text-stone mb-3">— Comprá por categoría</div>
           <h2 className="font-display font-normal text-5xl tracking-tight">Todo para tu ritual</h2>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {categories.map((c, i) => {
-            const bgImages = [
-              'https://source.unsplash.com/800x600/?coffee-beans,roasted&sig=cat1',
-              'https://source.unsplash.com/800x600/?cold-brew,coffee&sig=cat2',
-              'https://source.unsplash.com/800x600/?coffee-gift-box&sig=cat3',
-              'https://source.unsplash.com/800x600/?coffee-mug,cup&sig=cat4',
-              'https://source.unsplash.com/800x600/?coffee-machine,espresso&sig=cat5',
-              'https://source.unsplash.com/800x600/?coffee-package,craft&sig=cat6',
-            ];
-            return (
+          {categories.map((c, i) => (
+            <Reveal key={c.id} delay={i * 100}>
               <Link
-                key={c.id}
                 href={`/catalogo?cat=${c.slug}`}
-                className="cs-reveal group relative aspect-[4/3] rounded-xl overflow-hidden p-7 flex flex-col justify-between transition-transform hover:-translate-y-1"
-                style={{ animationDelay: `${0.1 + i * 0.1}s`, background: swatches[i % swatches.length] }}
+                className="group relative aspect-[4/3] rounded-xl overflow-hidden flex flex-col justify-between p-7 transition-transform hover:-translate-y-1 block h-full"
+                style={{ background: swatches[i % swatches.length] }}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url('${bgImages[i % bgImages.length]}')` }}
+                  style={{ backgroundImage: `url('${CATEGORY_IMAGES[i % CATEGORY_IMAGES.length]}')` }}
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(30,26,21,0.25) 0%, rgba(30,26,21,0.75) 100%)' }} />
                 <div className="relative font-mono text-[10px] tracking-widest uppercase text-cream/80">{counts[c.slug] ?? 0} productos</div>
@@ -149,21 +142,21 @@ export default async function HomePage() {
                   <div className="text-[13px] text-cream/95 inline-flex items-center gap-2">Ver categoría <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
                 </div>
               </Link>
-            );
-          })}
+            </Reveal>
+          ))}
         </div>
       </section>
 
       {/* EDITORIAL */}
       <section className="bg-coffee text-cream">
         <div className="max-w-[1360px] mx-auto px-8 py-32 grid lg:grid-cols-[1.1fr_1fr] gap-24 items-center">
-          <div className="cs-reveal-left">
+          <Reveal variant="left">
             <div className="font-mono text-[11px] tracking-widest uppercase text-gold mb-6">— Un buen café empieza antes</div>
             <h2 className="font-display font-light text-5xl lg:text-6xl leading-[1.04] tracking-tight mb-6">Del <em className="italic text-gold">productor</em> a tu cocina, con nombre y apellido.</h2>
             <p className="text-base leading-relaxed text-cream/72 mb-8 max-w-[520px]">Trabajamos con pequeñas fincas del norte del país. Cada bolsa lleva el nombre del productor, la finca y la altitud.</p>
             <Link href="/historia" className="inline-block px-6 py-3.5 rounded-full border border-cream/30 text-cream text-sm hover:bg-cream/10 transition">Conocé a los productores</Link>
-          </div>
-          <div className="cs-reveal-right aspect-[4/5] rounded-xl relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('https://source.unsplash.com/800x1000/?coffee-farmer,coffee-plantation&sig=editorial1')" }}>
+          </Reveal>
+          <Reveal variant="right" delay={200} className="aspect-[4/5] rounded-xl relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url('${EDITORIAL_IMAGE}')` }}>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(30,22,17,0.2) 0%, rgba(30,22,17,0.6) 100%)' }} />
             <div className="absolute inset-5 border border-gold/40" />
             <div className="absolute inset-7 border border-gold/20" />
@@ -171,7 +164,7 @@ export default async function HomePage() {
               <div className="font-mono text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Finca La Esperanza</div>
               <div className="font-display italic text-2xl">1.480 msnm — Sofía Núñez</div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

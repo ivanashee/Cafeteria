@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
+import Reveal from '@/components/Reveal';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
+import { CATALOG_HERO_IMAGE } from '@/lib/images';
 
 export const revalidate = 60;
 
@@ -35,7 +37,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
       <section className="relative h-[340px] overflow-hidden bg-coffeeDark">
         <div
           className="absolute inset-0 cs-ken-burns bg-cover bg-center"
-          style={{ backgroundImage: "url('https://source.unsplash.com/1920x600/?coffee-beans,roasted,bag&sig=catalogHero')" }}
+          style={{ backgroundImage: `url('${CATALOG_HERO_IMAGE}')` }}
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.75) 100%)' }} />
         <span className="cs-corner cs-corner-hero cs-corner-tl" />
@@ -121,9 +123,9 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
           {products.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.map((p, i) => (
-                <div key={p.id} className="cs-reveal" style={{ animationDelay: `${Math.min(0.05 + (i % 6) * 0.08, 0.55)}s` }}>
+                <Reveal key={p.id} delay={(i % 6) * 90}>
                   <ProductCard product={p} />
-                </div>
+                </Reveal>
               ))}
             </div>
           ) : (
