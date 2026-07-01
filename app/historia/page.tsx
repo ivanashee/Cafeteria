@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FARM_IMAGE } from '@/lib/images';
 
 export const metadata = { title: 'Nuestra historia · Coffee Store' };
 
@@ -36,18 +37,13 @@ export default function AboutPage() {
       {/* CHAPTER 1 */}
       <section className="bg-cream">
         <div className="max-w-[1200px] mx-auto px-8 py-28 grid lg:grid-cols-[1fr_1.1fr] gap-24 items-center">
-          <div className="cs-reveal-left relative aspect-[4/5] rounded overflow-hidden" style={{ background: 'linear-gradient(135deg, #7A4A2E, #2C1F16)', animationDelay: '0.15s' }}>
+          <div className="cs-reveal-left relative aspect-[4/5] rounded overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url('${FARM_IMAGE}')`, animationDelay: '0.15s' }}>
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(30,22,17,0.25) 0%, rgba(30,22,17,0.65) 100%)' }} />
             <div className="absolute inset-5 border border-gold/40" />
             <div className="absolute inset-7 border border-gold/20" />
-            <div className="absolute inset-0 grid place-items-center text-center text-gold">
-              <div>
-                <svg viewBox="0 0 100 100" className="w-20 h-20 mx-auto mb-3" fill="none" stroke="currentColor" strokeWidth="0.8">
-                  <circle cx="50" cy="50" r="35" /><circle cx="50" cy="50" r="28" />
-                  <path d="M50 22 L58 50 L50 78 L42 50 Z" /><line x1="15" y1="50" x2="85" y2="50" />
-                </svg>
-                <div className="font-mono text-[10px] tracking-widest uppercase">Finca La Esperanza</div>
-                <div className="font-display italic text-2xl mt-2">1.480 msnm</div>
-              </div>
+            <div className="absolute bottom-8 left-8 right-8 text-center text-gold">
+              <div className="font-mono text-[10px] tracking-widest uppercase">Finca La Esperanza</div>
+              <div className="font-display italic text-2xl mt-2 text-cream" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>1.480 msnm</div>
             </div>
           </div>
           <div className="cs-reveal-right" style={{ animationDelay: '0.25s' }}>
