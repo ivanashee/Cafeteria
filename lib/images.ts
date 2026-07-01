@@ -43,7 +43,7 @@ const PER_SLUG: Record<string, string> = {
   // Café
   'blend-esperanza':   '/img/cafe en grano y molido 1.jpeg',
   'finca-monte-rosa':  '/img/cafe grano y molio 2.jpeg',
-  'descafeinado':      '1587049352846-4a222e784d38', // coffee bag on wood (no local)
+  'descafeinado':      '/img/descafeinado.avif',
   // Bebidas
   'cold-brew-1l':      '/img/cold brew 1l.webp',
   'cold-brew-lata':    '/img/cold brew 330 ml.jpg',
