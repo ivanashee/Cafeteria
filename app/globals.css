@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FAF6F0;
+  --beige: #F1E9DC;
+  --coffee: #2C1F16;
+  --gold: #C9A876;
+}
+
+html, body { background: var(--cream); color: #1E1A15; }
+body { font-family: var(--font-inter), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--coffee); color: var(--cream); }
+
+@keyframes cs-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes cs-reveal { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes cs-reveal-left { from { opacity: 0; transform: translateX(-32px); } to { opacity: 1; transform: none; } }
+@keyframes cs-reveal-right { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+@keyframes cs-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes cs-bag-in { from { opacity: 0; transform: translateY(18px) scale(0.94); } to { opacity: 1; transform: none; } }
+
+.cs-fade { animation: cs-fade 0.4s ease-out both; }
+.cs-reveal { animation: cs-reveal 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.cs-reveal-left { animation: cs-reveal-left 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.cs-reveal-right { animation: cs-reveal-right 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.cs-line { display: inline-block; height: 1px; background: currentColor; transform-origin: left; animation: cs-grow 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+
+/* Art-deco corner marks */
+.cs-corner { position: absolute; width: 14px; height: 14px; border: 1px solid rgba(250, 246, 240, 0.7); z-index: 3; pointer-events: none; }
+.cs-corner-tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+.cs-corner-tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+.cs-corner-bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+.cs-corner-br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+/* Hero corner marks — bigger, gold */
+.cs-corner-hero { width: 32px; height: 32px; border-color: rgba(201, 168, 118, 0.5); }
+.cs-corner-hero.cs-corner-tl { top: 32px; left: 32px; }
+.cs-corner-hero.cs-corner-tr { top: 32px; right: 32px; }
+.cs-corner-hero.cs-corner-bl { bottom: 32px; left: 32px; }
+.cs-corner-hero.cs-corner-br { bottom: 32px; right: 32px; }
+
+.cs-bag-img { width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; animation: cs-bag-in 0.7s ease-out both; transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.cs-bag-slot:hover .cs-bag-img { transform: scale(1.04); }
+
+button, a { cursor: pointer; }
+input, textarea, select, button { font-family: inherit; color: inherit; }

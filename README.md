@@ -1,144 +1,73 @@
 # Coffee Store
 
-Prototipo visual completo de una tienda de cafetería online (Coffee Store) + esquema SQL listo para Supabase.
+Tienda de café de especialidad, construida con Next.js 15 + Supabase.
 
-## Qué contiene este proyecto
+## Stack
 
-- **`Coffee Store.dc.html`** — prototipo interactivo de alta fidelidad con **todas las pantallas** navegables:
-  - Home
-  - Catálogo (búsqueda, filtros por categoría/precio/stock/destacados, orden)
-  - Detalle de producto (galería, cantidad, agregar al carrito, comprar por WhatsApp, relacionados)
-  - Carrito (con persistencia en `localStorage`)
-  - Checkout (todos los campos requeridos)
-  - Confirmación de pedido + generación de mensaje de WhatsApp
-  - Panel admin: login, dashboard, gestión de productos, categorías, pedidos y cambio de estado
-- **`supabase/schema.sql`** — creación de schema `coffeestore` con las tablas `categories`, `products`, `customers`, `orders`, `order_items`, índices, triggers y vistas.
-- **`supabase/seed.sql`** — 12 productos demo + 6 categorías listos para cargar.
-- **`.env.example`** — variables de entorno para Next.js + Supabase + WhatsApp.
+- **Next.js 15** (App Router, Server Components, Server Actions)
+- **Supabase** (Postgres + Auth)
+- **Tailwind CSS** (diseño art-decó minimalista)
+- **Zustand** (carrito con persistencia en localStorage)
+- **TypeScript**
 
-## Cómo probar el prototipo
+## Setup local
 
-Abrí `Coffee Store.dc.html` directamente en el navegador (o en la vista previa de la app). Todas las pantallas están navegables desde el header, el ícono de admin (👤 arriba a la derecha) lleva al login, y el carrito se persiste entre recargas.
+1. Instalar Node 20+ (`brew install node`)
+2. Instalar dependencias: `npm install`
+3. Copiar `.env.example` a `.env.local` y completar con tus keys de Supabase
+4. Correr los SQL en Supabase:
+   - `supabase/schema.sql` (crea tablas, vistas, secuencia de códigos)
+   - `supabase/seed.sql` (12 productos + 6 categorías demo)
+5. Crear un usuario admin en Supabase → Authentication → Users
+6. `npm run dev` → http://localhost:3000
 
-Datos de acceso admin (demo): cualquier email + cualquier contraseña.
+## Deploy
 
-## Cómo llevarlo a producción con Next.js + Supabase
+En Vercel:
+1. Importar el repo de GitHub
+2. Framework: **Next.js** (autodetectado)
+3. Environment Variables: pegá las 4 vars de `.env.example`
+4. Deploy
 
-Este prototipo está pensado como **referencia visual y de UX** para que un dev (o Claude Code) construya la app real. Los pasos:
+## Rutas
 
-### 1. Crear el proyecto Next.js
+**Público:**
+- `/` — home con destacados y categorías
+- `/catalogo` — filtros por categoría, precio, stock, búsqueda
+- `/producto/[slug]` — detalle + relacionados
+- `/carrito` — carrito persistente
+- `/checkout` — formulario + crea pedido en Supabase
+- `/pedido/[code]` — confirmación
+- `/historia` — 6 capítulos con transiciones art-decó
+- `/contacto` — datos de contacto
 
-```bash
-npx create-next-app@latest coffee-store --typescript --tailwind --app --eslint
-cd coffee-store
-npm install @supabase/supabase-js @supabase/ssr
-```
+**Admin** (requiere login):
+- `/admin` — login
+- `/admin/dashboard` — métricas y resumen
+- `/admin/dashboard/productos` — CRUD + toggle activo/destacado
+- `/admin/dashboard/categorias` — CRUD
+- `/admin/dashboard/pedidos` — lista + filtros por estado
+- `/admin/dashboard/pedidos/[id]` — detalle + cambiar estado
 
-### 2. Configurar Supabase
-
-1. Creá un proyecto en [supabase.com](https://supabase.com).
-2. En el editor SQL, ejecutá primero `supabase/schema.sql` y luego `supabase/seed.sql`.
-3. En **Project Settings → API → Exposed schemas**, agregá `coffeestore` a la lista.
-4. Copiá `.env.example` a `.env.local` y completá con los valores del proyecto.
-
-### 3. Cliente de Supabase (`lib/supabase.ts`)
-
-```ts
-import { createClient } from '@supabase/supabase-js';
-
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  { db: { schema: process.env.NEXT_PUBLIC_SUPABASE_SCHEMA || 'coffeestore' } }
-);
-```
-
-### 4. Cargar productos (server component)
-
-```ts
-// app/catalogo/page.tsx
-import { supabase } from '@/lib/supabase';
-
-export default async function CatalogPage() {
-  const { data: products } = await supabase
-    .from('v_public_products')      // vista definida en schema.sql
-    .select('*')
-    .order('created_at', { ascending: false });
-
-  // ... render usando la UI del prototipo como referencia
-}
-```
-
-### 5. Crear pedido (route handler)
-
-```ts
-// app/api/orders/route.ts
-import { createClient } from '@supabase/supabase-js';
-
-export async function POST(req: Request) {
-  const body = await req.json();
-  const admin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,           // bypasea RLS
-    { db: { schema: 'coffeestore' } }
-  );
-
-  const { data: codeRow } = await admin.rpc('next_order_code');
-  const { data: order, error } = await admin
-    .from('orders')
-    .insert({ code: codeRow, ...body.customer, subtotal: body.subtotal, total: body.total })
-    .select().single();
-
-  if (error) return Response.json({ error: error.message }, { status: 500 });
-
-  await admin.from('order_items').insert(
-    body.items.map((it: any) => ({
-      order_id: order.id,
-      product_id: it.id,
-      product_name: it.name,
-      unit_price: it.price,
-      qty: it.qty,
-    }))
-  );
-  return Response.json({ order });
-}
-```
-
-### 6. Panel admin
-
-- Usá Supabase Auth (email + password) y validá `session.user.email === process.env.ADMIN_EMAIL` en un middleware o server component.
-- El cambio de estado del pedido es un `UPDATE` simple sobre `orders.status`.
-
-### 7. Correr localmente
-
-```bash
-npm run dev
-```
-
-Abrí <http://localhost:3000>.
-
-## Reglas de negocio implementadas en el prototipo
-
-- Los productos **inactivos** no aparecen en el storefront (vista `v_public_products`).
-- Los productos **sin stock** muestran badge "Sin stock" y **no permiten agregarse al carrito**.
-- El **carrito persiste** en `localStorage` entre recargas.
-- El botón "Comprar por WhatsApp" abre un mensaje pre-armado hacia **+595 981 772 872**.
-- Estados de pedido: `pending` → `confirmed` → `preparing` → `sent` → `delivered` (o `cancelled` en cualquier momento).
-
-## Estructura de archivos
+## Estructura
 
 ```
-.
-├── Coffee Store.dc.html      # Prototipo visual navegable
-├── README.md                 # Este archivo
-├── .env.example              # Variables de entorno de referencia
-└── supabase/
-    ├── schema.sql            # DDL: tablas, índices, triggers, vistas
-    └── seed.sql              # 12 productos + 6 categorías demo
+app/                    # rutas Next.js
+  admin/                # panel admin (protegido por middleware)
+  catalogo/, carrito/, checkout/, pedido/[code]/
+  historia/, contacto/
+components/             # Header, Footer, ProductCard, AddToCartButton
+lib/
+  supabase/             # client (browser), server (RSC), admin (service_role)
+  cart-store.ts         # zustand + persist
+  data.ts, format.ts, types.ts
+supabase/               # schema.sql + seed.sql
+mockup/                 # HTML original del design canvas (para referencia)
+middleware.ts           # protege /admin/**
 ```
 
-## Notas de diseño
+## Notas
 
-- Paleta: crema `#FAF6F0`, papel `#F1E9DC`, café oscuro `#2C1F16`, tinta `#1E1A15`, dorado sutil `#C9A876`.
-- Tipografía: **Fraunces** (display serif) + **Inter** (UI) + **JetBrains Mono** (etiquetas y datos).
-- Placeholders monocromos con etiqueta para todas las imágenes de producto — reemplazables por fotos reales en `products.image_url` / `products.gallery`.
+- El carrito vive en localStorage. Los pedidos se persisten en Supabase.
+- El descuento de stock se hace al crear el pedido (server action).
+- Las imágenes del catálogo usan `source.unsplash.com` como fallback si el producto no tiene `image_url` seteada.
