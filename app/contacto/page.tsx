@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
+import MountainScene from '@/components/MountainScene';
 import { MOUNTAINS_IMAGE } from '@/lib/images';
 
 export const metadata = { title: 'Contacto · Cataluña' };
@@ -115,47 +116,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal variant="right" delay={200} className="relative aspect-[4/3] rounded-xl overflow-hidden bg-coffeeDark">
-            {/* Minimalist mountain silhouette illustration (art-deco style) */}
-            <svg viewBox="0 0 800 600" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#2C1F16"/>
-                  <stop offset="60%" stopColor="#3D2A1E"/>
-                  <stop offset="100%" stopColor="#14100C"/>
-                </linearGradient>
-                <linearGradient id="mountFar" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#C9A876" stopOpacity="0.35"/>
-                  <stop offset="100%" stopColor="#C9A876" stopOpacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="mountMid" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#7A4A2E" stopOpacity="0.85"/>
-                  <stop offset="100%" stopColor="#3D2A1E" stopOpacity="1"/>
-                </linearGradient>
-                <linearGradient id="mountNear" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#1E1611"/>
-                  <stop offset="100%" stopColor="#0A0806"/>
-                </linearGradient>
-              </defs>
-              <rect width="800" height="600" fill="url(#skyGrad)"/>
-              {/* Sun / moon */}
-              <circle cx="580" cy="180" r="60" fill="#C9A876" opacity="0.15"/>
-              <circle cx="580" cy="180" r="42" fill="#C9A876" opacity="0.28"/>
-              {/* Art-deco horizontal lines */}
-              <line x1="60" y1="180" x2="480" y2="180" stroke="#C9A876" strokeWidth="0.5" opacity="0.35"/>
-              <line x1="60" y1="192" x2="420" y2="192" stroke="#C9A876" strokeWidth="0.5" opacity="0.2"/>
-              {/* Far mountains */}
-              <polygon points="0,420 120,300 240,380 380,260 520,360 680,280 800,340 800,600 0,600" fill="url(#mountFar)"/>
-              {/* Mid mountains */}
-              <polygon points="0,480 90,360 200,440 320,320 460,400 600,340 720,420 800,380 800,600 0,600" fill="url(#mountMid)"/>
-              {/* Near mountains */}
-              <polygon points="0,540 60,460 150,520 260,440 380,500 500,440 620,520 740,460 800,500 800,600 0,600" fill="url(#mountNear)"/>
-              {/* Coffee-plant hint (small dots at base) */}
-              <g fill="#C9A876" opacity="0.3">
-                <circle cx="120" cy="560" r="2"/><circle cx="180" cy="570" r="1.5"/><circle cx="250" cy="565" r="2"/>
-                <circle cx="330" cy="575" r="1.5"/><circle cx="420" cy="562" r="2"/><circle cx="500" cy="570" r="1.5"/>
-                <circle cx="580" cy="558" r="2"/><circle cx="660" cy="572" r="1.5"/><circle cx="730" cy="565" r="2"/>
-              </g>
-            </svg>
+            <div className="absolute inset-0"><MountainScene /></div>
             {/* Frame */}
             <div className="absolute inset-5 border border-gold/30 pointer-events-none" />
             <div className="absolute inset-7 border border-gold/15 pointer-events-none" />

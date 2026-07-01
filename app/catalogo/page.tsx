@@ -2,8 +2,8 @@ import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import Reveal from '@/components/Reveal';
 import SortSelect from '@/components/SortSelect';
+import MountainScene from '@/components/MountainScene';
 import { getProducts, getCategories, getCategoryCounts } from '@/lib/data';
-import { CATALOG_HERO_IMAGE } from '@/lib/images';
 
 const SORT_OPTIONS = [
   { value: 'recent', label: 'Más recientes' },
@@ -42,13 +42,16 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
 
   return (
     <div className="cs-fade">
-      {/* CATALOG HERO BANNER */}
-      <section className="relative h-[340px] overflow-hidden bg-coffeeDark">
+      {/* CATALOG HERO — art-decó mountain scene */}
+      <section className="relative h-[380px] overflow-hidden bg-coffeeDark">
+        <div className="absolute inset-0">
+          <MountainScene />
+        </div>
+        {/* Subtle darkening at the top and bottom for text legibility */}
         <div
-          className="absolute inset-0 cs-ken-burns bg-cover bg-center"
-          style={{ backgroundImage: `url('${CATALOG_HERO_IMAGE}')` }}
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.35) 0%, rgba(20,16,12,0) 40%, rgba(20,16,12,0) 60%, rgba(20,16,12,0.55) 100%)' }}
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.75) 100%)' }} />
         <span className="cs-corner cs-corner-hero cs-corner-tl" />
         <span className="cs-corner cs-corner-hero cs-corner-tr" />
         <span className="cs-corner cs-corner-hero cs-corner-bl" />
