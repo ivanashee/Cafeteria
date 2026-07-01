@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', weight: ['300', '400', '500', '600', '700'] });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', weight: ['300', '400', '500', '600', '700'], style: ['normal', 'italic'] });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', weight: ['400', '500', '600', '700'], style: ['normal', 'italic'] });
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-cormorant', weight: ['300', '400', '500', '600'], style: ['normal', 'italic'] });
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', weight: ['400', '500'] });
 
