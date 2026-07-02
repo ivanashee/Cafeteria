@@ -53,9 +53,6 @@ export default function Header() {
 
         {/* Right controls */}
         <div className="flex items-center gap-1.5 sm:gap-2 justify-self-end">
-          <Link href="/admin" title="Admin" className="hidden sm:grid w-10 h-10 rounded-full place-items-center text-mud hover:bg-beige">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>
-          </Link>
           <Link href="/carrito" title="Carrito" className="h-9 sm:h-10 px-3 sm:px-3.5 rounded-full inline-flex items-center gap-1.5 sm:gap-2 bg-coffee text-cream text-xs sm:text-[13px] hover:bg-cocoa">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M4 5h2l2.5 11h11l2-8H7"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
             <span className="hidden sm:inline">Carrito</span>
@@ -103,10 +100,7 @@ export default function Header() {
             <span className="font-mono text-[10px] tracking-widest uppercase text-stone">0{i + 1}</span>
           </Link>
         ))}
-        <Link href="/admin" className="mt-6 py-3 px-4 rounded-full border border-border text-center text-[13px] text-mud hover:bg-beige">
-          Panel administrativo
-        </Link>
-        <Link href="/privacidad" className="mt-2 py-2 text-center text-xs text-stone hover:text-coffee">
+        <Link href="/privacidad" className="mt-6 py-2 text-center text-xs text-stone hover:text-coffee">
           Política de privacidad
         </Link>
       </nav>
