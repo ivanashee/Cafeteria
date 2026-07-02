@@ -1,17 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCartStore } from '@/lib/cart-store';
 
 export default function Header() {
   const count = useCartStore((s) => s.items.reduce((a, i) => a + i.qty, 0));
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
 
-  // Close the drawer when the user navigates.
-  useEffect(() => { setOpen(false); }, [pathname]);
+  // Close menu/search when the user navigates.
+  useEffect(() => { setOpen(false); setSearchOpen(false); }, [pathname]);
 
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
@@ -20,6 +24,23 @@ export default function Header() {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prev; };
   }, [open]);
+
+  // Focus the search input when the overlay opens; close on Escape.
+  useEffect(() => {
+    if (!searchOpen) return;
+    const t = setTimeout(() => searchInputRef.current?.focus(), 60);
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSearchOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => { clearTimeout(t); document.removeEventListener('keydown', onKey); };
+  }, [searchOpen]);
+
+  function submitSearch(e: React.FormEvent) {
+    e.preventDefault();
+    const q = query.trim();
+    router.push(q ? `/catalogo?q=${encodeURIComponent(q)}` : '/catalogo');
+    setSearchOpen(false);
+    setQuery('');
+  }
 
   const links = [
     { href: '/', label: 'Inicio' },
@@ -53,6 +74,13 @@ export default function Header() {
 
         {/* Right controls */}
         <div className="flex items-center gap-1.5 sm:gap-2 justify-self-end">
+          <button
+            aria-label="Buscar"
+            onClick={() => setSearchOpen(true)}
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full grid place-items-center text-mud hover:bg-beige hover:text-coffee transition-colors"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
           <Link href="/carrito" title="Carrito" className="h-9 sm:h-10 px-3 sm:px-3.5 rounded-full inline-flex items-center gap-1.5 sm:gap-2 bg-coffee text-cream text-xs sm:text-[13px] hover:bg-cocoa">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M4 5h2l2.5 11h11l2-8H7"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
             <span className="hidden sm:inline">Carrito</span>
@@ -73,6 +101,41 @@ export default function Header() {
       </div>
 
     </header>
+
+    {/* Search overlay */}
+    <div
+      className={`fixed inset-0 z-50 transition-opacity duration-200 ${searchOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      aria-hidden={!searchOpen}
+    >
+      {/* backdrop */}
+      <div
+        onClick={() => setSearchOpen(false)}
+        className="absolute inset-0 bg-coffeeDark/50 backdrop-blur-sm"
+      />
+      {/* panel */}
+      <div className={`relative bg-cream border-b border-border shadow-[0_10px_30px_-12px_rgba(30,26,21,0.25)] transition-transform duration-300 ${searchOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        <form onSubmit={submitSearch} className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center gap-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B4A32" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input
+            ref={searchInputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Buscar café, bebidas, desayuno…"
+            className="flex-1 bg-transparent font-display italic text-2xl md:text-3xl text-coffee placeholder:text-stone/60 outline-none"
+          />
+          <span className="hidden sm:inline font-mono text-[10px] tracking-[0.28em] uppercase text-stone">Enter ↵</span>
+          <button
+            type="button"
+            aria-label="Cerrar búsqueda"
+            onClick={() => setSearchOpen(false)}
+            className="w-10 h-10 rounded-full grid place-items-center text-mud hover:bg-beige"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
 
     {/* Mobile drawer — rendered as a sibling of <header> so the header's
         `backdrop-blur` stacking context can't trap our `fixed` position. */}
