@@ -63,13 +63,29 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop nav (hidden on mobile) */}
+        {/* Desktop nav — art-decó rhombus + double line ornament on hover / active */}
         <nav className="hidden lg:flex gap-8 text-sm text-mud">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className={`py-1 border-b transition-colors ${pathname === l.href ? 'border-coffee text-coffee' : 'border-transparent hover:border-coffee'}`}>
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`group relative py-2 outline-none focus:outline-none focus-visible:outline-none transition-colors duration-300 ${active ? 'text-coffee' : 'hover:text-coffee'}`}
+              >
+                <span>{l.label}</span>
+                {/* Art-decó ornament: two thin lines with a rhombus centered between them */}
+                <span
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute left-1/2 -bottom-0.5 -translate-x-1/2 flex items-center gap-1 text-gold transition-all duration-500 ease-out ${active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                >
+                  <span className={`h-px bg-current transition-all duration-500 ease-out ${active ? 'w-6' : 'w-0 group-hover:w-6'}`} />
+                  <svg width="6" height="6" viewBox="0 0 6 6" fill="none" className="shrink-0"><polygon points="3,0 6,3 3,6 0,3" fill="currentColor" /></svg>
+                  <span className={`h-px bg-current transition-all duration-500 ease-out ${active ? 'w-6' : 'w-0 group-hover:w-6'}`} />
+                </span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right controls */}
