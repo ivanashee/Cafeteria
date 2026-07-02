@@ -17,7 +17,6 @@ export default function Footer() {
             <div className="text-[11px] tracking-widest uppercase text-cream/50 mb-4">Tienda</div>
             <div className="flex flex-col gap-2.5 text-sm">
               <Link href="/catalogo" className="hover:text-cream">Catálogo completo</Link>
-              <Link href="/catalogo?featured=1" className="hover:text-cream">Destacados</Link>
               <Link href="/historia" className="hover:text-cream">Nuestra historia</Link>
             </div>
           </div>
