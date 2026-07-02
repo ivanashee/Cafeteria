@@ -9,8 +9,13 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-cormorant', weight: ['300', '400', '500', '600'], style: ['normal', 'italic'] });
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', weight: ['400', '500'] });
 
+const SITE_TITLE = 'Cataluña Café & Bistró';
+
 export const metadata: Metadata = {
-  title: 'Cataluña Café & Bistró · Café de especialidad en Asunción',
+  title: {
+    default: SITE_TITLE,
+    template: SITE_TITLE,
+  },
   description: 'Tostado artesanal, origen único. Café con nombre y apellido.',
 };
 

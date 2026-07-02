@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Política de privacidad · Cataluña',
-  description: 'Cómo tratamos tus datos personales en Cataluña.',
+  description: 'Cómo tratamos tus datos personales en Cataluña Café & Bistró.',
 };
 
 const SECTIONS: { title: string; body: string[] }[] = [

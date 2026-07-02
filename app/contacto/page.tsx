@@ -3,7 +3,6 @@ import Reveal from '@/components/Reveal';
 import MountainScene from '@/components/MountainScene';
 import { MOUNTAINS_IMAGE } from '@/lib/images';
 
-export const metadata = { title: 'Contacto · Cataluña' };
 
 export default function ContactPage() {
   return (
